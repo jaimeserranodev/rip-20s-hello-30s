@@ -11,4 +11,4 @@ export const cards = Array.from({ length: TOTAL_CARDS }, (_, i) => ({
   label: `Recuerdo ${i + 1}`,
 }))
 
-export const BACK_CARD = `${import.meta.env.BASE_URL}back-card.jpeg`
+export const BACK_CARD = `${import.meta.env.BASE_URL}cards/back-card.jpeg`
