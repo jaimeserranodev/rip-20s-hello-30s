@@ -1,9 +1,43 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import useTetrisGame from '../hooks/useTetrisGame'
 import TetrisBoard from './TetrisBoard'
 import NextPiece from './NextPiece'
 import GameStats from './GameStats'
 import Confetti from './Confetti'
+
+const MUSIC_SRC = `${import.meta.env.BASE_URL}music/dani treinta y bien.mpeg`
+
+function useGameMusic(started, gameOver, victory) {
+  const audioRef = useRef(null)
+  const [muted, setMuted] = useState(false)
+
+  // Create audio element once
+  useEffect(() => {
+    const audio = new Audio(MUSIC_SRC)
+    audio.loop = true
+    audio.volume = 0.5
+    audioRef.current = audio
+    return () => { audio.pause(); audio.src = '' }
+  }, [])
+
+  // Play/pause based on game state
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (started && !gameOver && !victory) {
+      audio.play().catch(() => {})
+    } else {
+      audio.pause()
+    }
+  }, [started, gameOver, victory])
+
+  // Sync mute
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.muted = muted
+  }, [muted])
+
+  return { muted, toggleMute: () => setMuted(m => !m) }
+}
 
 function useTouchHold(action, repeatMs = 120) {
   const tid = useRef(null)
@@ -85,6 +119,7 @@ const CSS = `
 
 export default function DaniTetris({ onBack }) {
   const game = useTetrisGame()
+  const { muted, toggleMute } = useGameMusic(game.started, game.gameOver, game.victory)
 
   const leftHold  = useTouchHold(() => game.move(-1))
   const rightHold = useTouchHold(() => game.move(1))
@@ -116,7 +151,21 @@ export default function DaniTetris({ onBack }) {
             DANI-TRIS
           </h1>
         </div>
-        <div style={{ width: '80px' }} />
+        <button
+          onClick={toggleMute}
+          title={muted ? 'Activar música' : 'Silenciar música'}
+          style={{
+            width: '38px', height: '38px',
+            background: muted ? 'rgba(255,255,255,0.06)' : 'rgba(0,212,255,0.12)',
+            border: `1px solid ${muted ? 'rgba(255,255,255,0.15)' : 'rgba(0,212,255,0.4)'}`,
+            borderRadius: '10px', cursor: 'pointer',
+            color: muted ? 'rgba(255,255,255,0.35)' : '#00d4ff',
+            fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0,
+          }}
+        >
+          {muted ? '🔇' : '🔊'}
+        </button>
       </div>
 
       {/* ── Game area ── */}
