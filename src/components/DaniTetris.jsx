@@ -5,7 +5,7 @@ import NextPiece from './NextPiece'
 import GameStats from './GameStats'
 import Confetti from './Confetti'
 
-const MUSIC_SRC = `${import.meta.env.BASE_URL}music/dani treinta y bien.mpeg`
+const MUSIC_SRC = `${import.meta.env.BASE_URL}music/dani%20treinta%20y%20bien.mpeg`
 
 function useGameMusic(started, gameOver, victory) {
   const audioRef = useRef(null)
