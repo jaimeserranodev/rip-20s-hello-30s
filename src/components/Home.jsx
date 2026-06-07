@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 
 const FLOATING_EMOJIS = ['🎮', '🃏', '⭐', '🎂', '🎊', '🕹️', '🏆', '💥', '🎯', '🎁']
 
-/** Elemento flotante decorativo */
 function FloatingItem({ emoji, style }) {
   return (
     <span
@@ -29,12 +28,10 @@ export default function Home({ onEnter }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    // Pequeño delay para que la animación de entrada se note
     const t = setTimeout(() => setVisible(true), 100)
     return () => clearTimeout(t)
   }, [])
 
-  // Genera posiciones aleatorias pero fijas para los emojis flotantes
   const floatingItems = [
     { emoji: '🎮', style: { size: '2.5rem', opacity: 0.35, left: '5%',  top: '15%', anim: 'float',         dur: 4,   delay: 0,   color: '#ff2d78' } },
     { emoji: '🃏', style: { size: '2rem',   opacity: 0.3,  left: '88%', top: '20%', anim: 'float-reverse', dur: 3.5, delay: 0.5, color: '#00d4ff' } },
@@ -51,53 +48,43 @@ export default function Home({ onEnter }) {
   return (
     <div
       className="relative w-full min-h-dvh flex flex-col items-center justify-center overflow-hidden px-4 py-12"
-      style={{
-        background: 'radial-gradient(ellipse at 50% 50%, #1a0a2e 0%, #0a050f 60%, #08080f 100%)',
-      }}
+      style={{ background: 'radial-gradient(ellipse at 50% 50%, #1a0a2e 0%, #0a050f 60%, #08080f 100%)' }}
     >
-      {/* Líneas de scanline decorativas */}
+      {/* Scanlines */}
       <div
         aria-hidden="true"
         style={{
-          position: 'absolute',
-          inset: 0,
+          position: 'absolute', inset: 0,
           backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px)',
           pointerEvents: 'none',
         }}
       />
 
-      {/* Emojis flotantes decorativos */}
-      {floatingItems.map((item, i) => (
-        <FloatingItem key={i} {...item} />
-      ))}
+      {floatingItems.map((item, i) => <FloatingItem key={i} {...item} />)}
 
-      {/* Contenido principal */}
+      {/* Main content */}
       <div
         className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto"
         style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.5s ease' }}
       >
-        {/* Badge */}
         <div
           className="animate-slide-up mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full font-body font-bold text-sm"
           style={{
             background: 'rgba(139,92,246,0.2)',
             border: '1px solid rgba(139,92,246,0.4)',
-            color: '#c084fc',
-            animationFillMode: 'both',
+            color: '#c084fc', animationFillMode: 'both',
           }}
         >
           <span>🎮</span> Experiencia arcade personalizada
         </div>
 
-        {/* Título principal */}
         <h1
           className="font-arcade animate-slide-up delay-100 m-0 leading-none"
           style={{
             fontSize: 'clamp(2.8rem, 10vw, 6rem)',
             color: '#ff2d78',
             textShadow: '0 0 30px #ff2d78aa, 0 0 60px #ff2d7855',
-            letterSpacing: '0.02em',
-            animationFillMode: 'both',
+            letterSpacing: '0.02em', animationFillMode: 'both',
           }}
         >
           RIP 20's,
@@ -108,44 +95,33 @@ export default function Home({ onEnter }) {
             fontSize: 'clamp(2.8rem, 10vw, 6rem)',
             color: '#ffd700',
             textShadow: '0 0 30px #ffd700aa, 0 0 60px #ffd70055',
-            letterSpacing: '0.02em',
-            animationFillMode: 'both',
+            letterSpacing: '0.02em', animationFillMode: 'both',
           }}
         >
           Hello 30's
         </h1>
 
-        {/* Nombre del protagonista */}
         <div
           className="font-arcade animate-slide-up delay-300 mt-2"
           style={{
             fontSize: 'clamp(4rem, 16vw, 9rem)',
             color: '#00d4ff',
             textShadow: '0 0 40px #00d4ffbb, 0 0 80px #00d4ff55',
-            lineHeight: 0.9,
-            letterSpacing: '0.05em',
-            animationFillMode: 'both',
+            lineHeight: 0.9, letterSpacing: '0.05em', animationFillMode: 'both',
           }}
         >
           DANI
         </div>
 
-        {/* Subtítulo */}
         <p
           className="animate-slide-up delay-400 mt-6 font-body text-lg md:text-xl font-semibold"
-          style={{
-            color: 'rgba(255,255,255,0.7)',
-            maxWidth: '480px',
-            lineHeight: 1.5,
-            animationFillMode: 'both',
-          }}
+          style={{ color: 'rgba(255,255,255,0.7)', maxWidth: '480px', lineHeight: 1.5, animationFillMode: 'both' }}
         >
           30 años de leyenda merecen una celebración épica.
           <br />
           <span style={{ color: '#ffd700' }}>Tu multiverso personal te espera...</span>
         </p>
 
-        {/* Botón de entrada */}
         <button
           onClick={onEnter}
           className="btn-arcade btn-primary animate-slide-up delay-500 mt-10 rounded-2xl font-body font-black text-xl md:text-2xl"
@@ -159,27 +135,18 @@ export default function Home({ onEnter }) {
           🕹️ Entrar al Multiverso de Dani
         </button>
 
-        {/* Indicador de scroll / hint */}
         <p
           className="animate-slide-up delay-600 mt-8 font-body text-sm"
-          style={{
-            color: 'rgba(255,255,255,0.3)',
-            animationFillMode: 'both',
-          }}
+          style={{ color: 'rgba(255,255,255,0.3)', animationFillMode: 'both' }}
         >
           3 minijuegos · 1 boss final · Solo para valientes
         </p>
       </div>
 
-      {/* Degradado inferior */}
       <div
         aria-hidden="true"
         style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '120px',
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px',
           background: 'linear-gradient(transparent, #08080f)',
           pointerEvents: 'none',
         }}
