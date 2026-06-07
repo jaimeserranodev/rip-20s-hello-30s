@@ -5,11 +5,9 @@ import MemoryGame from './components/MemoryGame'
 import QuizGame from './components/QuizGame'
 import RouletteGame from './components/RouletteGame'
 import BossFinal from './components/BossFinal'
+import TacticsGame from './components/TacticsGame'
+import DaniTetris from './components/DaniTetris'
 
-/**
- * Enrutador simple basado en estado.
- * screens: home | menu | memory | quiz | roulette | boss
- */
 export default function App() {
   const [screen, setScreen] = useState('home')
 
@@ -26,6 +24,8 @@ export default function App() {
       {screen === 'quiz'     && <QuizGame      onBack={() => go('menu')} onComplete={() => go('menu')} />}
       {screen === 'roulette' && <RouletteGame  onBack={() => go('menu')} onComplete={() => go('menu')} />}
       {screen === 'boss'     && <BossFinal     onBack={() => go('menu')} />}
+      {screen === 'tactics'  && <TacticsGame   onBack={() => go('menu')} />}
+      {screen === 'tetris'   && <DaniTetris    onBack={() => go('menu')} />}
     </div>
   )
 }

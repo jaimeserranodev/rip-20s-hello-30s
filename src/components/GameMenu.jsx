@@ -3,6 +3,28 @@ import { getProgress } from '../utils/storage'
 
 const GAMES = [
   {
+    id: 'tactics',
+    emoji: '⚔️',
+    title: 'Birthday Tactics',
+    subtitle: 'TFT del cumple',
+    description: 'Forma tu equipo de amigos y mascotas. Derrota a Los 30.',
+    gradient: 'linear-gradient(135deg, #ffd700 0%, #ff8c00 100%)',
+    glow: '#ffd700',
+    progressKey: null,
+    alwaysUnlocked: true,
+  },
+  {
+    id: 'tetris',
+    emoji: '🟦',
+    title: 'DANI-TRIS',
+    subtitle: 'Tetris del cumple',
+    description: 'Encaja a Dani antes de que lleguen los 30. Llega a 30 líneas.',
+    gradient: 'linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%)',
+    glow: '#00d4ff',
+    progressKey: 'danitrisCompleted',
+    alwaysUnlocked: true,
+  },
+  {
     id: 'memory',
     emoji: '🃏',
     title: 'Encuentra las Parejas',

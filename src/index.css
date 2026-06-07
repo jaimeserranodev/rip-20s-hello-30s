@@ -342,6 +342,13 @@ body {
   border-radius: 99px;
 }
 
+/* ── Tactics: número flotante de daño ── */
+@keyframes damage-float {
+  0%   { opacity: 1; transform: translate(-50%, -50%) translateY(0) scale(1.2); }
+  60%  { opacity: 1; transform: translate(-50%, -50%) translateY(-40px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) translateY(-65px) scale(0.8); }
+}
+
 /* ── Responsive ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
