@@ -15,6 +15,7 @@ export function getProgress() {
     quizCompleted:     localStorage.getItem(KEYS.quiz)     === 'true',
     rouletteCompleted: localStorage.getItem(KEYS.roulette) === 'true',
     danitrisCompleted: localStorage.getItem('danitrisCompleted') === 'true',
+    novelCompleted:    localStorage.getItem('novelCompleted')    === 'true',
   }
 }
 

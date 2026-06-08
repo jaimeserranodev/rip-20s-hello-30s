@@ -14,6 +14,17 @@ const GAMES = [
     alwaysUnlocked: true,
   },
   {
+    id: 'novel',
+    emoji: '🕵️',
+    title: 'El Lobo de la Isla',
+    subtitle: 'Novela gráfica noir',
+    description: 'Un crimen. Un detective. Siete sospechosos. Encuentra al lobo antes de que el pueblo lo condene.',
+    gradient: 'linear-gradient(135deg, #c8a96e 0%, #5c4a2a 100%)',
+    glow: '#c8a96e',
+    progressKey: 'novelCompleted',
+    alwaysUnlocked: true,
+  },
+  {
     id: 'tetris',
     emoji: '🟦',
     title: 'DANI-TRIS',

@@ -7,6 +7,7 @@ import RouletteGame from './components/RouletteGame'
 import BossFinal from './components/BossFinal'
 import TacticsGame from './components/TacticsGame'
 import DaniTetris from './components/DaniTetris'
+import NovelGame from './components/NovelGame'
 
 const MUSIC_SRC = `${import.meta.env.BASE_URL}music/mastodonte.mpeg`
 
@@ -33,7 +34,7 @@ function usePersistentMusic(screen) {
   useEffect(() => {
     const audio = audioRef.current
     if (!audio || !activeRef.current) return
-    if (screen === 'tetris') {
+    if (screen === 'tetris' || screen === 'novel') {
       audio.pause()
     } else {
       audio.play().catch(() => {})
@@ -85,9 +86,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  // Al pulsar "Entrar" en Home: arranca la música y navega al menú
   const handleEnter = () => {
-    music.startMusic()
     go('menu')
   }
 
@@ -101,9 +100,10 @@ export default function App() {
       {screen === 'boss'     && <BossFinal     onBack={() => go('menu')} />}
       {screen === 'tactics'  && <TacticsGame   onBack={() => go('menu')} />}
       {screen === 'tetris'   && <DaniTetris    onBack={() => go('menu')} />}
+      {screen === 'novel'    && <NovelGame     onBack={() => go('menu')} />}
 
-      {/* Botón de música — visible en todas las pantallas menos en Tetris */}
-      {screen !== 'tetris' && (
+      {/* Botón de música — visible en todas las pantallas menos en Tetris y Novel */}
+      {screen !== 'tetris' && screen !== 'novel' && (
         <button
           onClick={music.toggleMute}
           aria-label={music.label}
